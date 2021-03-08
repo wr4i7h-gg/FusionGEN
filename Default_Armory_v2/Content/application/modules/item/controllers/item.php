@@ -6,6 +6,10 @@ class Item extends MX_Controller
 
 	public function Index($realm = false, $id = false)
 	{
+		// Tooltip language
+
+		$lang = lang("abbreviation", "main");
+		
 		clientLang("loading", "item");
 
 		// Make sure item and realm are set
@@ -23,7 +27,7 @@ class Item extends MX_Controller
 		{
 			if($cache2 = "empty")
 			{
-				$xml = simplexml_load_string(file_get_contents("https://wowhead.com/?item=".$id."&xml"));
+				$xml = simplexml_load_string(file_get_contents("https://".$lang.".wowhead.com/?item=".$id."&xml"));
 				$name = $xml->item->name;
 				$itemName = $name;
 			}
@@ -36,6 +40,9 @@ class Item extends MX_Controller
 		{
 			$itemName = lang("view_item", "item");
 		}
+		
+
+		$this->template->setTitle($itemName);
 
 		$this->template->setTitle($itemName);
 
@@ -47,7 +54,7 @@ class Item extends MX_Controller
 		}
 		else
 		{
-      $xml = simplexml_load_string(file_get_contents("https://wowhead.com/?item=".$id."&xml"));
+      $xml = simplexml_load_string(file_get_contents("https://".$lang.".wowhead.com/?item=".$id."&xml"));
       $itemHtmlTooltip = $xml->item->htmlTooltip;
       $item = $this->template->loadPage("ajax.tpl", array('module' => 'item', 'id' => $id, 'realm' => $realm, 'icon' => $icon, 'tooltip' => $itemHtmlTooltip));
 			$this->cache->save("items/tooltip_".$realm."_".$id."_".getLang(), $item);
