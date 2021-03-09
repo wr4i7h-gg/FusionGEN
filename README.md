@@ -5,6 +5,7 @@ Default_Armory_v2 - Should support all the major emulators. Needs testing.
 Tested emulators:
 
 - CATA without item_template
+- TrinityCore Legion
 
 
 Installation:
