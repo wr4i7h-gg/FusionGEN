@@ -178,7 +178,7 @@ class Character extends MX_Controller
 		
 		if($this->realms->getRealm($this->realm)->getEmulator()->hasStats())
 		{
-			// Find out which power field to use
+      // Find out which power field to use   
       switch($this->className)
       {
         default:
@@ -207,8 +207,13 @@ class Character extends MX_Controller
         break;
 
         case "Death knight":
-          $this->secondBar = "runic";
-          $this->secondBarValue = $this->stats['maxpower7'] / 10;
+				  if (isset($this->stats['maxpower7'])){
+						$this->secondBar = "runic";
+						$this->secondBarValue = $this->stats['maxpower7'] / 10;
+					} else {
+						$this->secondBar = "runic";
+						$this->secondBarValue = "Unknown";										
+					}
         break;
 			}
     }
@@ -217,7 +222,7 @@ class Character extends MX_Controller
       $this->secondBar = "mana";
       $this->secondBarValue = lang("unknown", "character");
     }
-		
+
 		// Load the items
 		$items = $this->armory_model->getItems();
 
