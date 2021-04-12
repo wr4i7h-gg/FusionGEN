@@ -39,7 +39,7 @@ class Icon extends MX_Controller
 			case 'trinity_wod':
 			case 'trinity_legion':
 			case 'trinity_bfa':
-			case 'trinity_shadowlands':
+			case 'trinity_sl':
 				return true;
 		}
 		
@@ -124,7 +124,7 @@ class Icon extends MX_Controller
 			return $this->getDisplayIdDB_WH($entry, $realm);
 		}
 		
-		if ((!$item || $item == "empty") && $this->getEmulatorString() == 'trinity_shadowlands')
+		if ((!$item || $item == "empty") && $this->getEmulatorString() == 'trinity_sl')
 		{
 			return $this->getDisplayIdDB_WH($entry, $realm);
 		}
