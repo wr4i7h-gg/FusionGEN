@@ -268,7 +268,7 @@ class Template
 			"menu_side" => $this->getMenu("side"),
 			"path" => base_url() . APPPATH,
 			"favicon" => $this->theme_data['favicon'],
-			"cdn_link" => $this->CI->config->item('cdn_enabled') === true ? $this->CI->config->item('cdn_link') : null,
+			"cdn" => $this->CI->config->item('cdn'),
 			"extra_css" => $css,
 			"extra_js" => $js,
 			"analytics" => $this->CI->config->item('analytics'),
@@ -470,7 +470,7 @@ class Template
 
 		foreach($slides_arr as $key=>$image)
 		{
-			if(!preg_match("/http:\/\//i", $image['link']) || !preg_match("/https:\/\//i", $image['link']))
+			if(!preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $image['link']))
 			{
 				$slides_arr[$key]['link'] = $this->page_url . $image['link'];
 			}
